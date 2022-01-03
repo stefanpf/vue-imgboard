@@ -2,9 +2,19 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title></title>
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Imgboard</title>
 </head>
 <body>
+    <header>
+        <h1>IMGBOARD</h1>
+    </header>
+    <div id="main">
+        {{ heading }}
+        <div v-if="images.length" class="image-wrapper">
+            <div v-for="image in images" class="image"><img :src="image.url" :alt="image.description">{{image.title}}</>
+        </div>
+    </div>
     <script src="/js/app.js" type="module" crossorigin="use-credentials"></script>
 </body>
 </html>
