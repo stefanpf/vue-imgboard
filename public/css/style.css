@@ -15,10 +15,20 @@ body {
 }
 
 .image {
-    max-width: 400px;
+    width: 600px;
     border: 2px solid orange;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .image img {
     width: 100%;
+}
+
+@media (max-width: 600px) {
+    .image-wrapper {
+        flex-direction: column;
+        justify-content: space-between;
+    }
 }

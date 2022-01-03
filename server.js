@@ -1,9 +1,10 @@
 const express = require("express");
+const { logUrl } = require("./utils/helper-functions");
 const db = require("./utils/db");
 const app = express();
 
+app.use(logUrl);
 app.use(express.static("./public"));
-
 app.use(express.json());
 
 app.get("/get-image-urls", (req, res) => {
