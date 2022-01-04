@@ -7,7 +7,9 @@ const db = psql(
 console.log(`[db] connecting to: ${DATABASE}`);
 
 function getImages() {
-    return db.query("SELECT url, title, description FROM images");
+    return db.query(
+        "SELECT url, title, description FROM images ORDER BY created_at DESC LIMIT 10"
+    );
 }
 
 module.exports = {
