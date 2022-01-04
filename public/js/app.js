@@ -33,7 +33,7 @@ Vue.createApp({
                 .then((res) => {
                     this.title = "";
                     this.description = "";
-                    this.file = null;
+                    this.$refs.fileInput.value = null;
                     this.username = "";
                     this.images.unshift(res.newImage);
                 })
