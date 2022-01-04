@@ -12,11 +12,11 @@ body {
 }
 
 .image-wrapper {
-    margin: 24px;
-    background-color: #fff;
+    margin: 24px 0px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
-    grid-auto-rows: 500px;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    /* grid-auto-rows: 500px; */
+    justify-items: center;
 }
 
 .image {
@@ -28,6 +28,11 @@ body {
     align-items: center;
     overflow-x: hidden;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+.image:hover {
+    box-shadow: 2px 2px 8px rgb(0 0 0 / 0.4);
+    cursor: pointer;
 }
 
 .image img {

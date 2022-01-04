@@ -31,7 +31,12 @@ Vue.createApp({
                 body: fd,
             })
                 .then((res) => res.json())
-                .then(console.log)
+                .then((res) => {
+                    this.title = "";
+                    this.description = "";
+                    this.file = null;
+                    this.username = "";
+                })
                 .catch((err) => {
                     console.log("Err in image upload:", err);
                 });
