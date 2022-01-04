@@ -28,11 +28,11 @@ body {
     align-items: center;
     overflow-x: hidden;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    cursor: pointer;
 }
 
 .image:hover {
-    box-shadow: 2px 2px 8px rgb(0 0 0 / 0.4);
-    cursor: pointer;
+    box-shadow: 2px 3px 10px rgb(0 0 0 / 0.4);
 }
 
 .image img {
@@ -42,4 +42,5 @@ body {
 .image-title {
     border: 1px solid red;
     padding: 12px 8px;
+    align-self: flex-start;
 }

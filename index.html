@@ -18,7 +18,6 @@
             <input @change="fileSelectHandler" type="file" name="file" accept="image/*">
             <button @click.prevent="clickHandler">Submit</button>
         </form>
-        {{ heading }}
         <div class="image-wrapper">
             <div v-for="image in images" class="image">
                 <img :src="image.url" :alt="image.description"></>

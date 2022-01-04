@@ -3,7 +3,6 @@ import * as Vue from "./vue.js";
 Vue.createApp({
     data() {
         return {
-            heading: "Latest Images",
             images: [],
             title: "",
             description: "",
@@ -36,6 +35,7 @@ Vue.createApp({
                     this.description = "";
                     this.file = null;
                     this.username = "";
+                    this.images.unshift(res.newImage);
                 })
                 .catch((err) => {
                     console.log("Err in image upload:", err);
