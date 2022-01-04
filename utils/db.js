@@ -1,7 +1,16 @@
-const { DATABASE, DB_USERNAME, DB_PASSWORD } = require("../secrets");
+let DATABASE, DB_USERNAME, DB_PASSWORD;
+
+if (!(process.env.NODE_ENV == "production")) {
+    DATABASE = require("../secrets").DATABASE;
+    DB_USERNAME = require("../secrets").DB_USERNAME;
+    DB_PASSWORD = require("../secrets").DB_PASSWORD;
+}
+
 const psql = require("spiced-pg");
+
 const db = psql(
-    `postgres:${DB_USERNAME}:${DB_PASSWORD}@localhost:5432/${DATABASE}`
+    process.env.DATABASE_URL ||
+        `postgres:${DB_USERNAME}:${DB_PASSWORD}@localhost:5432/${DATABASE}`
 );
 
 console.log(`[db] connecting to: ${DATABASE}`);

@@ -6,6 +6,14 @@ const s3 = require("./utils/s3");
 const app = express();
 const PORT = 8080;
 
+if (process.env.NODE_ENV == "production") {
+    app.use((req, res, next) => {
+        if (req.headers["x-forwarded-proto"].startsWith("https")) {
+            return next();
+        }
+        res.redirect(`https://${req.hostname}${req.url}`);
+    });
+}
 app.use(logUrl);
 app.use(express.static("./public"));
 app.use(express.json());
@@ -50,6 +58,6 @@ app.get("*", (req, res) => {
     res.sendFile(`${__dirname}/index.html`);
 });
 
-app.listen(PORT, () =>
+app.listen(process.env.PORT || PORT, () =>
     console.log(`Imageboard server listening on port ${PORT}`)
 );
