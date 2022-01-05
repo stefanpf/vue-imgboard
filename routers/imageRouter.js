@@ -52,6 +52,7 @@ imageRouter.get("/get-images", (req, res) => {
 imageRouter.get("/get-image-by-id", (req, res) => {
     db.getImageById(parseInt(req.query.id))
         .then(({ rows }) => {
+            rows[0].created_at = moment(new Date(rows[0].created_at)).fromNow();
             res.json(rows[0]);
         })
         .catch((err) => console.log("Err in getImageById:", err));

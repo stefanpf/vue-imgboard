@@ -23,7 +23,7 @@ const imageModalComponent = {
                 <div class="image-modal-content">
                     <img :src="image.url" :alt="image.description">
                     <div class="image-modal-text">
-                        {{image.id}} | {{image.title}} | uploaded by {{image.username}} on {{image.created_at}}
+                        {{image.id}} | {{image.title}} | uploaded by {{image.username}} ({{image.created_at}})
                     </div>
                     <button @click="emitClose">Close</button>
                 </div>
