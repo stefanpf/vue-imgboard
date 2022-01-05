@@ -19,7 +19,7 @@ Vue.createApp({
             .catch((err) => console.log("Err in mounted:", err));
     },
     methods: {
-        clickHandler: function () {
+        upload: function () {
             const fd = new FormData();
             fd.append("title", this.title);
             fd.append("description", this.description);
@@ -41,7 +41,7 @@ Vue.createApp({
                     console.log("Err in image upload:", err);
                 });
         },
-        fileSelectHandler: function (e) {
+        selectFile: function (e) {
             this.file = e.target.files[0];
         },
     },

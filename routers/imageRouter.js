@@ -6,7 +6,7 @@ const s3 = require("../utils/s3");
 
 imageRouter.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
     if (req.file) {
-        const newImage = {
+        let newImage = {
             url: `https://spimgboardeu.s3.eu-central-1.amazonaws.com/${req.file.filename}`,
             username: req.body.username,
             title: req.body.title,
@@ -18,7 +18,11 @@ imageRouter.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
             newImage.title,
             newImage.description
         )
-            .then(() => {
+            .then(({ rows }) => {
+                newImage = {
+                    ...newImage,
+                    id: rows[0].id,
+                };
                 res.json({ success: true, newImage });
             })
             .catch((err) => {

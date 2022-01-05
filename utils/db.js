@@ -16,14 +16,13 @@ const db = psql(
 console.log(`[db] connecting to: ${DATABASE}`);
 
 function getImages() {
-    return db.query(
-        "SELECT url, username, title, description FROM images ORDER BY created_at DESC LIMIT 10"
-    );
+    return db.query("SELECT * FROM images ORDER BY created_at DESC LIMIT 10");
 }
 
 function insertImage(url, username, title, description) {
     const q = `INSERT INTO images (url, username, title, description) 
-        VALUES ($1, $2, $3, $4);`;
+        VALUES ($1, $2, $3, $4)
+        RETURNING id;`;
     const params = [url, username, title, description];
     return db.query(q, params);
 }
