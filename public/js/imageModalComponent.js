@@ -1,13 +1,24 @@
 const imageModalComponent = {
+    data() {
+        return {
+            image: {},
+        };
+    },
     mounted() {
-        console.log("logging imageId from the component:", this.imageId);
         fetch("/get-image-by-id?" + new URLSearchParams({ id: this.imageId }))
             .then((res) => res.json())
-            .then(console.log);
+            .then((data) => (this.image = { ...data }))
+            .catch((err) => console.log("Err in /get-image-by-id", err));
     },
     props: ["imageId"],
-    template: `<div>
-        <h1>This is the Modal</h1>
+    methods: {
+        emitClose() {
+            this.$emit("close");
+        },
+    },
+    template: `<div class="image-modal">
+        <img :src="image.url" :alt="image.description">
+        {{image.id}} | {{image.title}} | {{image.created_at}} | <span @click="emitClose">Close</span>
     </div>`,
 };
 

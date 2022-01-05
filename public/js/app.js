@@ -9,7 +9,7 @@ Vue.createApp({
             description: "",
             file: null,
             username: "",
-            imageClicked: false,
+            imageClicked: 0,
         };
     },
     mounted() {
@@ -51,6 +51,9 @@ Vue.createApp({
         },
         showModal: function (imageId) {
             this.imageClicked = imageId;
+        },
+        hideModal: function () {
+            this.imageClicked = 0;
         },
     },
 }).mount("#main");
