@@ -1,4 +1,5 @@
 const express = require("express");
+const moment = require("moment");
 const imageRouter = express.Router();
 const db = require("../utils/db");
 const { uploader } = require("../utils/upload");
@@ -22,7 +23,7 @@ imageRouter.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
                 newImage = {
                     ...newImage,
                     id: rows[0].id,
-                    created_at: rows[0].created_at,
+                    created_at: moment(new Date(rows[0].created_at)).fromNow(),
                 };
                 res.json({ success: true, newImage });
             })
@@ -38,6 +39,9 @@ imageRouter.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
 imageRouter.get("/get-images", (req, res) => {
     db.getImages()
         .then(({ rows }) => {
+            for (let row of rows) {
+                row.created_at = moment(new Date(row.created_at)).fromNow();
+            }
             res.json(rows);
         })
         .catch((err) => {
