@@ -19,6 +19,12 @@ function getImages() {
     return db.query("SELECT * FROM images ORDER BY created_at DESC LIMIT 10");
 }
 
+function getImageById(imageId) {
+    const q = `SELECT * FROM images WHERE id = $1`;
+    const params = [imageId];
+    return db.query(q, params);
+}
+
 function insertImage(url, username, title, description) {
     const q = `INSERT INTO images (url, username, title, description) 
         VALUES ($1, $2, $3, $4)
@@ -29,5 +35,6 @@ function insertImage(url, username, title, description) {
 
 module.exports = {
     getImages,
+    getImageById,
     insertImage,
 };

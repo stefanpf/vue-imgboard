@@ -9,7 +9,7 @@ Vue.createApp({
             description: "",
             file: null,
             username: "",
-            clickedOnImage: false,
+            imageClicked: false,
         };
     },
     mounted() {
@@ -50,8 +50,7 @@ Vue.createApp({
             this.file = e.target.files[0];
         },
         showModal: function (imageId) {
-            this.clickedOnImage = true;
-            console.log("clicked on an image with id", imageId);
+            this.imageClicked = imageId;
         },
     },
 }).mount("#main");
