@@ -274,14 +274,15 @@ header {
 .image-modal-content img {
     max-width: 100%;
 }
+
 .image-modal-text {
+    margin: 12px 0;
     border: 1px solid red;
     padding: 12px 0px;
 }
 
-.image-modal-text span {
-    cursor: pointer;
-    border: 1px solid orange;
+.image-modal-content button {
+    margin: 0px 0px 12px 0px;
 }
 
 .overlay {
