@@ -28,7 +28,7 @@ function getImageById(imageId) {
 function insertImage(url, username, title, description) {
     const q = `INSERT INTO images (url, username, title, description) 
         VALUES ($1, $2, $3, $4)
-        RETURNING id;`;
+        RETURNING id, created_at;`;
     const params = [url, username, title, description];
     return db.query(q, params);
 }

@@ -22,6 +22,7 @@ imageRouter.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
                 newImage = {
                     ...newImage,
                     id: rows[0].id,
+                    created_at: rows[0].created_at,
                 };
                 res.json({ success: true, newImage });
             })
