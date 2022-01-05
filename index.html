@@ -12,11 +12,11 @@
     </header>
     <div id="main">
         <image-modal v-if="imageClicked" :image-id="imageClicked" @close="hideModal"></image-modal>
-        <form>
+        <form class="upload-form">
             <input v-model="title" type="text" name="title" placeholder="title">
             <input v-model="username" type="text" name="username" placeholder="username">
             <input v-model="description" type="text" name="description" placeholder="description">
-            <input @change="selectFile" type="file" name="file" accept="image/*" ref="fileInput">
+            <input @change="selectFile" type="file" id="file_input" name="file" accept="image/*" ref="fileInput">
             <button @click.prevent="upload">Upload</button>
         </form>
         <div class="image-wrapper">

@@ -16,10 +16,19 @@ const imageModalComponent = {
             this.$emit("close");
         },
     },
-    template: `<div class="image-modal">
-        <img :src="image.url" :alt="image.description">
-        {{image.id}} | {{image.title}} | {{image.created_at}} | <span @click="emitClose">Close</span>
-    </div>`,
+    template: `
+        <div>
+            <div class="overlay">
+            <div class="image-modal">
+                <div class="image-modal-content">
+                    <img :src="image.url" :alt="image.description">
+                    <div class="image-modal-text">
+                        {{image.id}} | {{image.title}} | uploaded by {{image.username}} on {{image.created_at}}
+                    </div>
+                    <button @click="emitClose">Close</button>
+                </div>
+            </div>
+        </div>`,
 };
 
 export default imageModalComponent;
