@@ -1,4 +1,5 @@
 import * as Vue from "./vue.js";
+import imageModalComponent from "./imageModalComponent.js";
 
 Vue.createApp({
     data() {
@@ -8,6 +9,7 @@ Vue.createApp({
             description: "",
             file: null,
             username: "",
+            clickedOnImage: false,
         };
     },
     mounted() {
@@ -17,6 +19,9 @@ Vue.createApp({
                 this.images = data;
             })
             .catch((err) => console.log("Err in mounted:", err));
+    },
+    components: {
+        "image-modal": imageModalComponent,
     },
     methods: {
         upload: function () {
@@ -43,6 +48,10 @@ Vue.createApp({
         },
         selectFile: function (e) {
             this.file = e.target.files[0];
+        },
+        showModal: function (imageId) {
+            this.clickedOnImage = true;
+            console.log("clicked on an image with id", imageId);
         },
     },
 }).mount("#main");
