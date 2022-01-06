@@ -49,9 +49,19 @@ function insertImage(url, username, title, description) {
     return db.query(q, params);
 }
 
+function getCommentsById(imageId) {
+    const q = `SELECT * FROM comments WHERE image_id = $1`;
+    const params = [imageId];
+    return db.query(q, params);
+}
+
+function insertComment() {}
+
 module.exports = {
     getImages,
     getImageById,
     getMoreImages,
     insertImage,
+    getCommentsById,
+    insertComment,
 };

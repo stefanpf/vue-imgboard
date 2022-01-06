@@ -1,6 +1,7 @@
 const express = require("express");
 const { logUrl } = require("./utils/helper-functions");
 const imageRouter = require("./routers/imageRouter");
+const commentRouter = require("./routers/commentRouter");
 const app = express();
 const PORT = 8080;
 
@@ -19,6 +20,7 @@ app.use(express.json());
 
 // ROUTES
 app.use(imageRouter);
+app.use(commentRouter);
 app.get("*", (req, res) => {
     res.sendFile(`${__dirname}/index.html`);
 });

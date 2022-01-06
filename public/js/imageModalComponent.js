@@ -1,3 +1,5 @@
+import imageCommentsComponent from "./imageCommentsComponent.js";
+
 const imageModalComponent = {
     data() {
         return {
@@ -5,12 +7,13 @@ const imageModalComponent = {
         };
     },
     mounted() {
-        fetch("/get-image-by-id?" + new URLSearchParams({ id: this.imageId }))
+        fetch(`/get-image-by-id/${this.imageId}`)
             .then((res) => res.json())
             .then((data) => (this.image = { ...data }))
             .catch((err) => console.log("Err in /get-image-by-id", err));
     },
     props: ["imageId"],
+    components: { "image-comments": imageCommentsComponent },
     methods: {
         emitClose() {
             this.$emit("close");
@@ -26,10 +29,11 @@ const imageModalComponent = {
                         {{image.title}}
                     </div>
                     <div class="image-modal-text">
-                        uploaded by {{image.username}} ({{image.created_at}})
+                        {{image.id}} | uploaded by {{image.username}} ({{image.created_at}})
                     </div>
                     <button @click="emitClose">Close</button>
                 </div>
+                <image-comments :image-id="this.imageId"></image-comments>
             </div>
         </div>`,
 };
