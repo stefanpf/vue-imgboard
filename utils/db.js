@@ -50,12 +50,20 @@ function insertImage(url, username, title, description) {
 }
 
 function getCommentsById(imageId) {
-    const q = `SELECT * FROM comments WHERE image_id = $1`;
+    const q = `SELECT comment_text, username, created_at
+            FROM comments 
+            WHERE image_id = $1 
+            ORDER BY id DESC;`;
     const params = [imageId];
     return db.query(q, params);
 }
 
-function insertComment() {}
+function insertComment(imageId, commentText, username) {
+    const q = `INSERT INTO comments (image_id, comment_text, username)
+            VALUES ($1, $2, $3) RETURNING created_at;`;
+    const params = [imageId, commentText, username];
+    return db.query(q, params);
+}
 
 module.exports = {
     getImages,

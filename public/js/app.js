@@ -35,7 +35,7 @@ Vue.createApp({
             const fd = new FormData();
             fd.append("title", this.title);
             fd.append("description", this.description);
-            fd.append("username", this.username);
+            fd.append("username", this.username || "anonymous");
             fd.append("file", this.file);
             fetch("/upload", {
                 method: "POST",

@@ -17,7 +17,26 @@ const imageCommentsComponent = {
     props: ["imageId"],
     methods: {
         saveComment: function () {
-            console.log("save a comment");
+            fetch("/new-comment", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    image_id: this.imageId,
+                    comment_text: this.comment,
+                    username: this.username || "anonymous",
+                }),
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    this.comments.unshift({
+                        comment_text: this.comment,
+                        username: this.username || "anonymous",
+                        created_at: data.created_at,
+                    });
+                })
+                .catch((err) => console.log("Err in /new-comment:", err));
         },
     },
     template: `
@@ -29,7 +48,7 @@ const imageCommentsComponent = {
             </form>
             <div class="comments-wrapper">
                 <div v-for="comment in comments" class="comment">
-                    {{comment.comment_text}} by {{comment.username}} at {{comment.created_at}}
+                    {{comment.comment_text}} by {{comment.username}} ({{comment.created_at}})
                 </div>
             </div>
         </div>`,
