@@ -149,7 +149,7 @@
 }
 
 body {
-    background-color: hotpink;
+    background-color: antiquewhite;
     font-family: Avenir, Arial, sans-serif;
 }
 
@@ -289,11 +289,16 @@ header {
 
 .image-modal-text {
     margin: 12px 0;
-    padding: 12px 0px;
+    padding: 0px 0px 0px 0px;
 }
 
 .image-modal-content button {
-    margin: 0px 0px 12px 0px;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 2.5em;
+    height: 2.5em;
+    border-radius: 50%;
 }
 
 .overlay {
@@ -309,4 +314,39 @@ header {
     margin: 0px 0px 24px 0px;
     display: flex;
     justify-content: center;
+}
+
+.comment-section {
+    max-width: 80%;
+}
+
+.comments-wrapper {
+    font-size: 18px;
+    margin: 0px 0px 8px 0px;
+}
+
+.comment-form {
+    display: flex;
+    justify-content: center;
+    margin: 12px 0px 0px 0px;
+}
+
+.comment-form input {
+    outline: 1px solid rgba(36, 18, 147, 0.4);
+    border-radius: 8px;
+    font-size: 18px;
+    margin: 0px 6px 0px 6px;
+    padding: 5px 10px;
+}
+
+.comment-forum input:focus {
+    outline: 1px solid black;
+}
+
+.comment-form button {
+    width: 200px;
+    height: 35px;
+    font-size: 18px;
+    font-weight: 400;
+    margin: 0px 6px 0px 6px;
 }

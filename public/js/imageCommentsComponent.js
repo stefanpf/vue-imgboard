@@ -35,22 +35,27 @@ const imageCommentsComponent = {
                         username: this.username || "anonymous",
                         created_at: data.created_at,
                     });
+                    this.username = "";
+                    this.comment = "";
                 })
                 .catch((err) => console.log("Err in /new-comment:", err));
         },
     },
     template: `
-        <div>
-            <form class="comment-form">
-                <input v-model="comment" type="text" name="comment" placeholder="comment" required>
-                <input v-model="username" type="text" name="username" placeholder="username">
-                <button @click.prevent="saveComment">Save Comment</button>
-            </form>
+        <div class="comment-section">
+            <h3>Comments:</h3>
             <div class="comments-wrapper">
                 <div v-for="comment in comments" class="comment">
                     {{comment.comment_text}} by {{comment.username}} ({{comment.created_at}})
+                    <hr>
                 </div>
             </div>
+            <h4>Add a comment:</h4>
+            <form class="comment-form">
+                <input v-model="comment" type="text" name="comment" placeholder="comment" required>
+                <input v-model="username" type="text" name="username" placeholder="username">
+                <button @click.prevent="saveComment">Save comment</button>
+            </form>
         </div>`,
 };
 

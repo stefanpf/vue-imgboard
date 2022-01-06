@@ -29,9 +29,9 @@ const imageModalComponent = {
                         {{image.title}}
                     </div>
                     <div class="image-modal-text">
-                        {{image.id}} | uploaded by {{image.username}} ({{image.created_at}})
+                        uploaded by {{image.username}} ({{image.created_at}})
                     </div>
-                    <button @click="emitClose">Close</button>
+                    <button @click="emitClose">X</button>
                 </div>
                 <image-comments :image-id="this.imageId"></image-comments>
             </div>

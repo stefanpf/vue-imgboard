@@ -20,7 +20,7 @@ function getImages() {
                     FROM images
                     ORDER BY id ASC
                     LIMIT 1) AS "lowestId" 
-                    FROM images ORDER BY id DESC LIMIT 3;`);
+                    FROM images ORDER BY id DESC LIMIT 6;`);
 }
 
 function getImageById(imageId) {
@@ -36,7 +36,7 @@ function getMoreImages(lowestId) {
         LIMIT 1) AS "lowestId" FROM images
         WHERE id < $1
         ORDER BY id DESC
-        LIMIT 3;`;
+        LIMIT 6;`;
     const params = [lowestId];
     return db.query(q, params);
 }
