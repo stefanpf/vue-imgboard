@@ -42,7 +42,7 @@ const imageCommentsComponent = {
     template: `
         <div>
             <form class="comment-form">
-                <input v-model="comment" type="text" name="comment" placeholder="comment">
+                <input v-model="comment" type="text" name="comment" placeholder="comment" required>
                 <input v-model="username" type="text" name="username" placeholder="username">
                 <button @click.prevent="saveComment">Save Comment</button>
             </form>

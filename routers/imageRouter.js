@@ -49,8 +49,8 @@ imageRouter.get("/get-images", (req, res) => {
         });
 });
 
-imageRouter.get("/get-more-images", (req, res) => {
-    db.getMoreImages(parseInt(req.query.id))
+imageRouter.get("/get-more-images/:id", (req, res) => {
+    db.getMoreImages(req.params.id)
         .then(({ rows }) => {
             res.json(rows);
         })

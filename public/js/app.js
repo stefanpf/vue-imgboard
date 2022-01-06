@@ -63,12 +63,7 @@ Vue.createApp({
             this.imageClicked = 0;
         },
         loadMoreImages: function () {
-            fetch(
-                "/get-more-images?" +
-                    new URLSearchParams({
-                        id: this.images[this.images.length - 1].id,
-                    })
-            )
+            fetch(`/get-more-images/${this.images[this.images.length - 1].id}`)
                 .then((res) => res.json())
                 .then((data) => {
                     for (let row of data) {
