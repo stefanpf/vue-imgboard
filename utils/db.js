@@ -30,7 +30,7 @@ function getImageById(imageId) {
 }
 
 function getMoreImages(lowestId) {
-    const q = `SELECT url, title, id, (SELECT id
+    const q = `SELECT url, title, id, created_at, (SELECT id
         FROM images
         ORDER BY id ASC
         LIMIT 1) AS "lowestId" FROM images

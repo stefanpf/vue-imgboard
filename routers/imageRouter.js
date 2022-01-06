@@ -52,6 +52,9 @@ imageRouter.get("/get-images", (req, res) => {
 imageRouter.get("/get-more-images/:id", (req, res) => {
     db.getMoreImages(req.params.id)
         .then(({ rows }) => {
+            for (let row of rows) {
+                row.created_at = moment(new Date(row.created_at)).fromNow();
+            }
             res.json(rows);
         })
         .catch((err) => console.log("Err in getMoreImages:", err));
