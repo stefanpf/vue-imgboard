@@ -18,12 +18,15 @@ const imageModalComponent = {
     },
     template: `
         <div>
-            <div class="overlay">
+            <div @click="emitClose" class="overlay"></div>
             <div class="image-modal">
                 <div class="image-modal-content">
                     <img :src="image.url" :alt="image.description">
+                    <div class="image-modal-title">
+                        {{image.title}}
+                    </div>
                     <div class="image-modal-text">
-                        {{image.id}} | {{image.title}} | uploaded by {{image.username}} ({{image.created_at}})
+                        uploaded by {{image.username}} ({{image.created_at}})
                     </div>
                     <button @click="emitClose">Close</button>
                 </div>
