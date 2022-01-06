@@ -49,6 +49,14 @@ imageRouter.get("/get-images", (req, res) => {
         });
 });
 
+imageRouter.get("/get-more-images", (req, res) => {
+    db.getMoreImages(parseInt(req.query.id))
+        .then(({ rows }) => {
+            res.json(rows);
+        })
+        .catch((err) => console.log("Err in getMoreImages:", err));
+});
+
 imageRouter.get("/get-image-by-id", (req, res) => {
     db.getImageById(parseInt(req.query.id))
         .then(({ rows }) => {

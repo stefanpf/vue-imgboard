@@ -10,6 +10,7 @@ Vue.createApp({
             file: null,
             username: "",
             imageClicked: 0,
+            moreImagesAvailable: true,
         };
     },
     mounted() {
@@ -54,6 +55,23 @@ Vue.createApp({
         },
         hideModal: function () {
             this.imageClicked = 0;
+        },
+        loadMoreImages: function () {
+            fetch(
+                "/get-more-images?" +
+                    new URLSearchParams({
+                        id: this.images[this.images.length - 1].id,
+                    })
+            )
+                .then((res) => res.json())
+                .then((data) => {
+                    for (let row of data) {
+                        this.images.push(row);
+                        if (row.id === row.lowestId) {
+                            this.moreImagesAvailable = false;
+                        }
+                    }
+                });
         },
     },
 }).mount("#main");

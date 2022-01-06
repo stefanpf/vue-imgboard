@@ -23,6 +23,10 @@
             <div v-for="image in images" class="image" @click="showModal(image.id)">
                 <img :src="image.url" :alt="image.description"></image>
                 <div class="image-title" :key="image.id">{{image.id}} | {{image.title}} | {{image.created_at}}</div>
+            </div>
+        </div>
+        <div class="more-btn">
+            <button v-if="moreImagesAvailable" @click="loadMoreImages">More</button>
         </div>
     </div>
 </body>

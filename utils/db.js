@@ -16,12 +16,24 @@ const db = psql(
 console.log(`[db] connecting to: ${DATABASE}`);
 
 function getImages() {
-    return db.query("SELECT * FROM images ORDER BY created_at DESC LIMIT 10");
+    return db.query("SELECT * FROM images ORDER BY id DESC LIMIT 3");
 }
 
 function getImageById(imageId) {
     const q = `SELECT * FROM images WHERE id = $1`;
     const params = [imageId];
+    return db.query(q, params);
+}
+
+function getMoreImages(lowestId) {
+    const q = `SELECT url, title, id, (SELECT id
+        FROM images
+        ORDER BY id ASC
+        LIMIT 1) AS "lowestId" FROM images
+        WHERE id < $1
+        ORDER BY id DESC
+        LIMIT 3;`;
+    const params = [lowestId];
     return db.query(q, params);
 }
 
@@ -36,5 +48,6 @@ function insertImage(url, username, title, description) {
 module.exports = {
     getImages,
     getImageById,
+    getMoreImages,
     insertImage,
 };
