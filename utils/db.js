@@ -16,7 +16,11 @@ const db = psql(
 console.log(`[db] connecting to: ${DATABASE}`);
 
 function getImages() {
-    return db.query("SELECT * FROM images ORDER BY id DESC LIMIT 3");
+    return db.query(`SELECT *, (SELECT id
+                    FROM images
+                    ORDER BY id ASC
+                    LIMIT 1) AS "lowestId" 
+                    FROM images ORDER BY id DESC LIMIT 3;`);
 }
 
 function getImageById(imageId) {

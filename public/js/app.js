@@ -10,7 +10,7 @@ Vue.createApp({
             file: null,
             username: "",
             imageClicked: 0,
-            moreImagesAvailable: true,
+            moreImagesAvailable: false,
         };
     },
     mounted() {
@@ -18,6 +18,12 @@ Vue.createApp({
             .then((res) => res.json())
             .then((data) => {
                 this.images = data;
+                if (
+                    this.images[this.images.length - 1].id >
+                    this.images[this.images.length - 1].lowestId
+                ) {
+                    this.moreImagesAvailable = true;
+                }
             })
             .catch((err) => console.log("Err in mounted:", err));
     },
