@@ -21,7 +21,7 @@
         </form>
         <div class="image-wrapper">
             <div v-for="image in images" class="image" @click="showModal(image.id)">
-                <img :src="image.url" :alt="image.description"></image>
+                <img :src="image.url" :alt="image.description" :key="image.id"></image>
                 <div class="image-title" :key="image.id">
                     {{image.title}} <span>({{image.created_at}})</span>
                 </div>
