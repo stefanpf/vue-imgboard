@@ -191,6 +191,7 @@ header {
 .upload-form {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .upload-form input#file_input {
@@ -259,8 +260,10 @@ header {
     border-radius: 10px;
     position: absolute;
     left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    top: 24px;
+    /* top: 50%; */
+    /* transform: translate(-50%, -50%); */
+    transform: translateX(-50%);
     display: flex;
     flex-direction: column;
     justify-items: center;
